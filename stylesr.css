@@ -1,0 +1,56 @@
+/* styles.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: url('minecraft.jpg'); /* Arkaplan resmi */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  margin: 0;
+  padding-top: 50px;
+  color: white;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.background {
+  background-color: rgba(0, 0, 0, 0.7); /* Arkaplan rengi ve opaklık */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.minecraft-text {
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.red-text {
+  color: red;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #1e3799;
+  color: white;
+  padding: 10px 0;
+}
