@@ -1,0 +1,86 @@
+/* styles.css */
+body {
+  font-family: 'Roboto', sans-serif; /* Roboto fontunu kullan */
+  background-color: #1e3799;
+  text-align: center;
+  margin: 0;
+  padding-top: 50px;
+  color: white;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.input {
+  width: 200px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  background-color: #3c40c6;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-row {
+  margin-bottom: 10px;
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5758BB;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #7182ff;
+}
+
+.button:active {
+  transform: translateY(2px);
+}
+
+.button-delete {
+  background-color: #ea4c89;
+}
+
+.button-enter {
+  background-color: #4CAF50;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #1e3799;
+  color: white;
+  padding: 10px 0;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
