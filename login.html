@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>iPhir Minecraft - Giriş</title>
+  <link rel="stylesheet" href="styler.css">
+</head>
+<body>
+  <div class="container">
+    <h1>iPhir Minecraft</h1>
+    <div class="keyboard">
+      <input type="password" id="passwordField" readonly>
+      <div class="key-row">
+        <button class="key" onclick="enterCharacter('q')">Q</button>
+        <button class="key" onclick="enterCharacter('w')">W</button>
+        <button class="key" onclick="enterCharacter('e')">E</button>
+        <button class="key" onclick="enterCharacter('r')">R</button>
+        <button class="key" onclick="enterCharacter('t')">T</button>
+        <button class="key" onclick="enterCharacter('y')">Y</button>
+        <button class="key" onclick="enterCharacter('u')">U</button>
+        <button class="key" onclick="enterCharacter('i')">I</button>
+        <button class="key" onclick="enterCharacter('o')">O</button>
+        <button class="key" onclick="enterCharacter('p')">P</button>
+      </div>
+      <div class="key-row">
+        <button class="key" onclick="enterCharacter('a')">A</button>
+        <button class="key" onclick="enterCharacter('s')">S</button>
+        <button class="key" onclick="enterCharacter('d')">D</button>
+        <button class="key" onclick="enterCharacter('f')">F</button>
+        <button class="key" onclick="enterCharacter('g')">G</button>
+        <button class="key" onclick="enterCharacter('h')">H</button>
+        <button class="key" onclick="enterCharacter('j')">J</button>
+        <button class="key" onclick="enterCharacter('k')">K</button>
+        <button class="key" onclick="enterCharacter('l')">L</button>
+        <button class="key enter" onclick="checkPassword()">Enter</button>
+      </div>
+      <div class="key-row">
+        <button class="key" onclick="enterCharacter('z')">Z</button>
+        <button class="key" onclick="enterCharacter('x')">X</button>
+        <button class="key" onclick="enterCharacter('c')">C</button>
+        <button class="key" onclick="enterCharacter('v')">V</button>
+        <button class="key" onclick="enterCharacter('b')">B</button>
+        <button class="key" onclick="enterCharacter('n')">N</button>
+        <button class="key" onclick="enterCharacter('m')">M</button>
+        <button class="key delete" onclick="deleteCharacter()">Sil</button>
+      </div>
+    </div>
+    <div id="warningMessage" style="display: none; color: red;">ig: ilaydabackk</div>
+  </div>
+
+  <script>
+    let enteredPassword = "";
+    let canLogin = true;
+
+    function enterCharacter(character) {
+      enteredPassword += character;
+      document.getElementById("passwordField").value = "*".repeat(enteredPassword.length);
+    }
+
+    function deleteCharacter() {
+      enteredPassword = enteredPassword.slice(0, -1);
+      document.getElementById("passwordField").value = "*".repeat(enteredPassword.length);
+    }
+
+    function checkPassword() {
+      if (enteredPassword === "iphirminecraft") {
+        if (canLogin) {
+          sendToDiscord("Giriş başarılı!");
+          alert("Giriş başarılı!");
+          canLogin = false;
+          setTimeout(() => {
+            canLogin = true;
+          }, 25000); // 25 saniye boyunca tekrar girişi engelle
+          window.location.href = "sunucu.html"; // sunucu.html sayfasına yönlendir
+        } else {
+          alert("25 saniye içinde tekrar giriş yapamazsınız!");
+        }
+      } else {
+        sendToDiscord("Giriş başarısız!");
+        alert("Hatalı parola, lütfen tekrar deneyin.");
+      }
+      enteredPassword = "";
+      document.getElementById("passwordField").value = "";
+    }
+
+    function sendToDiscord(message) {
+      const webhookURL = "BURAYA_DISCORD_WEBHOOK_URLSINI_EKLEYIN";
+
+      const payload = {
+        content: message
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Webhook'a gönderme başarısız!");
+        }
+      })
+      .catch(error => {
+        console.error("Hata:", error);
+      });
+    }
+  </script>
+
+  <div class="footer">
+    <p>&copy; 2023 iPhir Minecraft Sunucusu</p>
+  </div>
+</body>
+</html>
