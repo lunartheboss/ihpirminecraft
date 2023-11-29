@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>iPhir Minecraft - Bilgi</title>
+  <link rel="stylesheet" href="stylesr.css">
+</head>
+<body>
+  <div class="container">
+    <h1>iPhir Minecraft</h1>
+    <div class="background">
+      <div class="minecraft-text">
+        <p>Şuanda Minecraft Sunucumuz:</p>
+        <p id="serverStatus" class="red-text">Kapalı</p>
+      </div>
+    </div>
+    <div id="warningMessage" style="display: none; color: red;">ig: ilaydabackk</div>
+  </div>
+
+  <script>
+    // Yazının silinip tekrar gelmesi
+    setInterval(function() {
+      const statusElement = document.getElementById("serverStatus");
+      statusElement.style.display = "none";
+      setTimeout(function() {
+        statusElement.style.display = "block";
+      }, 500);
+    }, 3000); // 3 saniye aralıklarla tekrar et
+  </script>
+
+  <div class="footer">
+    <p>&copy; 2023 iPhir Minecraft Sunucusu</p>
+  </div>
+</body>
+</html>
 
