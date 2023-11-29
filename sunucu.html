@@ -2,35 +2,27 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>iPhir Minecraft - Bilgi</title>
-  <link rel="stylesheet" href="stylesr.css">
+  <title>iPhir Minecraft Sunucusu</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>iPhir Minecraft</h1>
-    <div class="background">
-      <div class="minecraft-text">
-        <p>Şuanda Minecraft Sunucumuz:</p>
-        <p id="serverStatus" class="red-text">Kapalı</p>
-      </div>
-    </div>
-    <div id="warningMessage" style="display: none; color: red;">ig: ilaydabackk</div>
-  </div>
+  <header>
+    <h1>iPhir Minecraft Sunucusu</h1>
+  </header>
+  
+  <main>
+    <p>Yönlendiriliyorsunuz...</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 iPhir Minecraft Sunucusu. Tüm hakları saklıdır.</p>
+  </footer>
 
   <script>
-    // Yazının silinip tekrar gelmesi
-    setInterval(function() {
-      const statusElement = document.getElementById("serverStatus");
-      statusElement.style.display = "none";
-      setTimeout(function() {
-        statusElement.style.display = "block";
-      }, 500);
-    }, 3000); // 3 saniye aralıklarla tekrar et
+    // Sayfa yüklendiğinde yönlendirme yap
+    window.onload = function() {
+      window.location.href = "mac/macizle.html"; // Yönlendirme yapılacak URL
+    };
   </script>
-
-  <div class="footer">
-    <p>&copy; 2023 iPhir Minecraft Sunucusu</p>
-  </div>
 </body>
 </html>
-
