@@ -79,6 +79,34 @@ function checkPassword() {
   document.getElementById("passwordField").value = "";
 }
 
+    function logTime() {
+  var currentDate = new Date();
+  var loginTime = currentDate.toLocaleString("tr-TR"); // Tarih ve saat bilgisini al
+
+  var webhookURL = 'https://discord.com/api/webhooks/1176563758202638357/x576zGqif11z41bbmgfHEcr2VBxwC2VAJ2zBdrbv7vHz1cVCuQh4cagtWTofZqL4CM7J'; // Discord Webhook URL'si
+
+  // JSON verisi oluştur
+  var data = {
+    content: 'Giriş yapıldı: ' + loginTime
+  };
+
+  // Fetch ile Discord Webhook'a POST isteği gönderme
+  fetch(webhookURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    console.log('Webhook isteği başarıyla gönderildi:', response);
+  })
+  .catch(error => {
+    console.error('Webhook isteği gönderilirken bir hata oluştu:', error);
+  });
+}
+
+    
 function sendToDiscord(message) {
   const webhookURL = "https://discord.com/api/webhooks/1176563758202638357/x576zGqif11z41bbmgfHEcr2VBxwC2VAJ2zBdrbv7vHz1cVCuQh4cagtWTofZqL4CM7J";
 
