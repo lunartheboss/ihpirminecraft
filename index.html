@@ -2,139 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>iPhir Minecraft Sunucusu</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #3498db;
-      text-align: center;
-      margin: 0;
-      padding-bottom: 50px;
-    }
-    .container {
-      margin-top: 100px;
-      color: white;
-    }
-    input[type="password"] {
-      padding: 10px;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    .button {
-      padding: 10px 20px;
-      font-size: 18px;
-      margin: 5px;
-    }
-    .button-enter {
-      background-color: #2ecc71;
-      color: white;
-      border: none;
-    }
-    .button-delete {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-    }
-    .copyright {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 14px;
-    }
-  </style>
+  <title>iPhir Minecraft Sunucusu Giriş</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <h1>iPhir Minecraft Sunucusu</h1>
     <input type="password" id="passwordField" readonly>
-    <br>
-    <button class="button" onclick="enterDigit(1)">1</button>
-    <button class="button" onclick="enterDigit(2)">2</button>
-    <button class="button" onclick="enterDigit(3)">3</button>
-    <br>
-    <button class="button" onclick="enterDigit(4)">4</button>
-    <button class="button" onclick="enterDigit(5)">5</button>
-    <button class="button" onclick="enterDigit(6)">6</button>
-    <br>
-    <button class="button" onclick="enterDigit(7)">7</button>
-    <button class="button" onclick="enterDigit(8)">8</button>
-    <button class="button" onclick="enterDigit(9)">9</button>
-    <br>
-    <button class="button" onclick="enterDigit(0)">0</button>
-    <button class="button button-delete" onclick="deleteDigit()">Sil</button>
-    <button class="button button-enter" onclick="checkPassword()">Enter</button>
+    <div class="button-container">
+      <div class="button-row">
+        <button class="button" onclick="enterDigit(1)">1</button>
+        <button class="button" onclick="enterDigit(2)">2</button>
+        <button class="button" onclick="enterDigit(3)">3</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="enterDigit(4)">4</button>
+        <button class="button" onclick="enterDigit(5)">5</button>
+        <button class="button" onclick="enterDigit(6)">6</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="enterDigit(7)">7</button>
+        <button class="button" onclick="enterDigit(8)">8</button>
+        <button class="button" onclick="enterDigit(9)">9</button>
+      </div>
+      <div class="button-row">
+        <button class="button" onclick="enterDigit(0)">0</button>
+        <button class="button button-delete" onclick="deleteDigit()">Sil</button>
+        <button class="button button-enter" onclick="checkPassword()">Enter</button>
+      </div>
+    </div>
+  </div>
   
-    <button class="button button-enter" onclick="checkPassword()">Enter</button>
-  </div>
-  <p style="margin-top: 20px;">instagram: ilaydabackk</p>
-  <a href="https://www.instagram.com/ilaydabackk" target="_blank" style="text-decoration: none;">
-    <button style="padding: 10px 20px; font-size: 16px;">Instagram</button>
-  </a>
-  <div class="copyright">
-    &copy; 2023 iPhir Minecraft Sunucusu
-  </div>
+<div id="welcomeMessage" style="display: none; color: red;">
+      Instagram: ilaydabackk
+</div>
+      // Giriş yapıldığında uyarı mesajı görüntüleme
+    alert("Instagram: ilaydabackk");
 
+    // Uyarı mesajını göster
+    document.getElementById("welcomeMessage").style.display = "block";
+  
   <script>
-    let password = "1799";
-    let enteredPasswords = [];
-    let canLogin = true;
+    // script.js
+let password = "";
+let canLogin = true;
 
-    function enterDigit(digit) {
-      password += digit;
-      document.getElementById("passwordField").value = "*".repeat(password.length);
+function enterDigit(digit) {
+  password += digit;
+  document.getElementById("passwordField").value = "*".repeat(password.length);
+}
+
+function deleteDigit() {
+  password = password.slice(0, -1);
+  document.getElementById("passwordField").value = "*".repeat(password.length);
+}
+
+function checkPassword() {
+  if (password === "1799") {
+    if (canLogin) {
+      sendToDiscord("Giriş başarılı!");
+      alert("Giriş başarılı!");
+      canLogin = false;
+      setTimeout(() => {
+        canLogin = true;
+      }, 10000); // 10 saniye boyunca tekrar girişi engelle
+      window.location.href = "panel.html"; // panel.html sayfasına yönlendir
+    } else {
+      alert("10 saniye içinde tekrar giriş yapamazsınız!");
     }
+  } else {
+    alert("Hatalı parola, lütfen tekrar deneyin.");
+  }
+  password = "";
+  document.getElementById("passwordField").value = "";
+}
 
-    function deleteDigit() {
-      password = password.slice(0, -1);
-      document.getElementById("passwordField").value = "*".repeat(password.length);
+function sendToDiscord(message) {
+  const webhookURL = "https://discord.com/api/webhooks/1176563758202638357/x576zGqif11z41bbmgfHEcr2VBxwC2VAJ2zBdrbv7vHz1cVCuQh4cagtWTofZqL4CM7J";
+
+  const payload = {
+    content: message
+  };
+
+  fetch(webhookURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Webhook'a gönderme başarısız!");
     }
+  })
+  .catch(error => {
+    console.error("Hata:", error);
+  });
+}
 
-    function checkPassword() {
-      if (canLogin) {
-        enteredPasswords.push(password);
-        sendToDiscord(password);
-        alert("Parola kaydedildi ve Discord'a gönderildi!");
-        canLogin = false;
-        setTimeout(() => {
-          canLogin = true;
-        }, 10000); // 10 saniye boyunca tekrar girişi engelle
-
-        // Giriş başarılı ise
-        alert("Giriş başarılı!");
-        sendToDiscord("Giriş başarılı!");
-        window.location.href = "panel.html"; // panel.html sayfasına yönlendir
-      } else {
-        alert("10 saniye içinde tekrar giriş yapamazsınız!");
-      }
-      password = "1799";
-      document.getElementById("passwordField").value = "1799";
-    }
-
-    function sendToDiscord(message) {
-      const webhookURL = "https://discord.com/api/webhooks/1176563758202638357/x576zGqif11z41bbmgfHEcr2VBxwC2VAJ2zBdrbv7vHz1cVCuQh4cagtWTofZqL4CM7J";
-
-      const payload = {
-        content: message
-      };
-
-      fetch(webhookURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Webhook'a gönderme başarısız!");
-        }
-      })
-      .catch(error => {
-        console.error("Hata:", error);
-      });
-    }
   </script>
+  <!-- Alt Kısım -->
+  <div class="footer">
+    <p>&copy; 2023 iPhir Minecraft Sunucusu</p>
+    <a href="https://www.instagram.com/ilaydabackk/" target="_blank">Instagram Hesabım</a>
+  </div>
+  
 </body>
 </html>
