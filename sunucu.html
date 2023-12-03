@@ -2,27 +2,75 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>iPhir Minecraft Sunucusu</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>iPhir Sunucusu - Bakımda</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      padding: 50px 0;
+    }
+    .rgb-box {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      margin: 10px;
+      border-radius: 10px;
+      animation: glowing 2s infinite;
+    }
+    @keyframes glowing {
+      0% {
+        background-color: red;
+      }
+      50% {
+        background-color: green;
+      }
+      100% {
+        background-color: blue;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>iPhir Minecraft Sunucusu</h1>
-  </header>
-  
-  <main>
-    <p>Yönlendiriliyorsunuz...</p>
-  </main>
+  <div class="container">
+    <h1>Şuanda Minecraft Sunucumuz:</h1>
+    <h2 style="color: red;">Bakımda</h2>
+    <div class="rgb-box"></div>
+    <div class="rgb-box"></div>
+    <div class="rgb-box"></div>
+    <!-- Buraya geriye sayan sayaç için bir element ekle -->
+    <p id="countdown"></p>
+    <p>Sunucu İsmi: iPhir</p>
+  </div>
+<script>
+  function geriyeSay() {
+    var countDownDate = new Date().getTime() + (6 * 60 * 60 * 1000); // Şu andan 6 saat sonrasını hesapla
 
-  <footer>
-    <p>&copy; 2023 iPhir Minecraft Sunucusu. Tüm hakları saklıdır.</p>
-  </footer>
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
 
-  <script>
-    // Sayfa yüklendiğinde yönlendirme yap
-    window.onload = function() {
-      window.location.href = "mac/macizle.html"; // Yönlendirme yapılacak URL
-    };
-  </script>
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = hours + " saat " + minutes + " dakika " + seconds + " saniye kaldı";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "Süre doldu";
+      }
+    }, 1000);
+  }
+
+  geriyeSay(); // Geriye sayan sayaç başlatma
+</script>
+
+
 </body>
 </html>
